@@ -1,36 +1,336 @@
-# This is a basic workflow to help you get started with Actions
+port: 8989
+socks-port: 1080
+mixed-port: 10809
+allow-lan: true
+bind-address: '*'
+ipv6: false
+mode: rule
+log-level: info
+geodata-mode: true
+tcp-concurrent: true
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+  force-domain:
+    - '+.google.com'
+    - '+.cloudflare.com'
+    - '+.cloudflare.net'
+    - '+.cloudfront.net'
+  port-whitelist:
+    - 443
+    - 80
+    - 8000-9000
+tun:
+  enable: true
+  device: meta
+  stack: system
+  dns-hijack:
+    - 'any:53'
+  auto-route: false
+  auto-detect-interface: false
+dns:
+  enable: true
+  listen: 0.0.0.0:2323
+  default-nameserver:
+    - 8.8.8.8
+    - 8.8.4.4
+  use-hosts: true
+  enhanced-mode: redir-host
+  nameserver:
+    - 8.8.8.8
+    - 8.8.4.4
+    - https://dns.google/dns-query
+    - tls://dns.google:853
+  fallback:
+    - 1.1.1.1
+    - 1.0.0.1
+    - https://dns.cloudflare.com/dns-query
+    - tls://1dot1dot1dot1.cloudflare-dns.com:853
+  fallback-filter:
+    geoip: true
+    geoip-code: ID
+    geosite:
+      - gfw
 
-name: CI
+proxies: 
+# --------------------------------------------------------------------------
+# Vmess
+# --------------------------------------------------------------------------
+  - name: Sg Herbal # Exp 30
+    server: 172.104.61.45
+    port: 443
+    type: vmess
+    uuid: d795837f-f1e8-4554-b78b-9abf15b79de8
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: w5.web.whatsapp.com
+    network: ws
+    ws-opts:
+      path: /herbalserver
+      headers:
+        Host: w5.web.whatsapp.com
+    udp: true
+# --------------------------------------------------------------------------
+  - name: Id Herbal # Exp 30
+    server: 103.179.30.42
+    port: 443
+    type: vmess
+    uuid: 7567a1d2-a396-45ea-91c2-8fe941f5f1ae
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: w5.web.whatsapp.com
+    network: ws
+    ws-opts:
+      path: /herbalserver
+      headers:
+        Host: w5.web.whatsapp.com
+    udp: true
+# --------------------------------------------------------------------------
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+# --------------------------------------------------------------------------
+# gRPC
+# --------------------------------------------------------------------------
+  - name: Sg Racevpn # Exp 31
+    server: 167.71.212.252
+    port: 2002
+    type: vless
+    uuid: 72098abc-1ec1-4e1e-82d1-a58fa19d4405
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: w5.web.whatsapp.com
+    network: grpc
+    grpc-opts:
+      grpc-service-name: "%2Fgrpc"
+    udp: true
+# --------------------------------------------------------------------------
+  - name: Id Racevpn # Exp 31
+    server: 103.169.210.64
+    port: 2002
+    type: vless
+    uuid: 60eb83fd-b323-44f7-8d9d-6e936537fea9
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: w5.web.whatsapp.com
+    network: grpc
+    grpc-opts:
+      grpc-service-name: "%2Fgrpc"
+    udp: true
+# --------------------------------------------------------------------------
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+
+
+
+
+# --------------------------------------------------------------------------
+# Shadowsocks/R
+# --------------------------------------------------------------------------
+  - name: Sg Jagoanssh # Update Sunday
+    server: 51.79.173.62
+    port: 1443
+    type: ss
+    cipher: aes-256-cfb
+    password: edGQaxoQhk
+    udp: true
+    plugin: obfs
+    plugin-opts:
+       mode: tls
+       host: w5.web.whatsapp.com
+# --------------------------------------------------------------------------
+  - name: Id Jagoanssh # Update Sunday
+    server: 103.227.255.30
+    port: 1443
+    type: ss
+    cipher: aes-256-cfb
+    password: rE4fF9eSDY
+    udp: true
+    plugin: obfs
+    plugin-opts:
+       mode: tls
+       host: w5.web.whatsapp.com
+# --------------------------------------------------------------------------
+  - name: Sg Sshstores # Exp 2
+    server: 15.235.167.72
+    port: 1443
+    type: ss
+    cipher: chacha20-ietf-poly1305
+    password: qaFNN
+    udp: true
+    plugin: obfs
+    plugin-opts:
+       mode: tls
+       host: w5.web.whatsapp.com
+# --------------------------------------------------------------------------
+  - name: Id Sshstores # Exp 2
+    server: 103.136.19.182
+    port: 1443
+    type: ss
+    cipher: chacha20-ietf-poly1305
+    password: wvsX0
+    udp: true
+    plugin: obfs
+    plugin-opts:
+       mode: tls
+       host: w5.web.whatsapp.com
+# --------------------------------------------------------------------------
+
+
+
+
+
+# --------------------------------------------------------------------------
+# Trojan
+# --------------------------------------------------------------------------
+  - name: Sg Jagoanssh l # Exp 2
+    server: 51.79.156.223
+    port: 443
+    type: trojan
+    password: jagoanssh-Vhuyg
+    skip-cert-verify: true
+    sni: w5.web.whatsapp.com
+    udp: true
+# --------------------------------------------------------------------------
+  - name: Id Jagoanssh l # Exp 2
+    server: 103.169.210.120
+    port: 443
+    type: trojan
+    password: jagoanssh-Hyerrrd
+    skip-cert-verify: true
+    sni: w5.web.whatsapp.com
+    udp: true
+# --------------------------------------------------------------------------
+
+
+
+
+
+# --------------------------------------------------------------------------
+proxy-groups:
+  - name: IRENE
+    type: select
+    proxies:
+      - V2Ray
+      - Ss/R
+      - Trojan
+      - gRPC
+      - Load Balance
+      - Best Ping
+      - Fallback
+# --------------------------------------------------------------------------
+  - name: V2Ray
+    type: select
+    proxies:
+      - Sg Herbal
+      - Id Herbal
+# --------------------------------------------------------------------------
+  - name: Ss/R
+    type: select
+    proxies:
+      - Sg Jagoanssh
+      - Id Jagoanssh
+      - Sg Sshstores
+      - Id Sshstores
+# --------------------------------------------------------------------------
+  - name: Trojan
+    type: select
+    proxies:
+      - Sg Jagoanssh l
+      - Id Jagoanssh l
+# --------------------------------------------------------------------------
+  - name: gRPC
+    type: select
+    proxies:
+      - Sg Racevpn
+      - Id Racevpn
+# --------------------------------------------------------------------------
+  - name: Load Balance
+    type: load-balance
+    strategy: consistent-hashing
+    url: http://hi.bonds.id/ping
+    interval: 300
+    proxies:
+      - Id Racevpn
+      - Sg Racevpn
+      - Sg Jagoanssh l
+      - Id Jagoanssh l
+      - Sg Jagoanssh
+      - Id Jagoanssh
+      - Sg Sshstores
+      - Id Sshstores
+      - Sg Herbal
+      - Id Herbal
+# --------------------------------------------------------------------------
+  - name: Best Ping
+    type: url-test
+    url: http://hi.bonds.id/ping
+    interval: 300
+    tolerance: 50
+    proxies:
+      - Id Racevpn
+      - Sg Racevpn
+      - Sg Jagoanssh l
+      - Id Jagoanssh l
+      - Sg Jagoanssh
+      - Id Jagoanssh
+      - Sg Sshstores
+      - Id Sshstores
+      - Sg Herbal
+      - Id Herbal
+# --------------------------------------------------------------------------
+  - name: Fallback
+    type: fallback
+    url: http://hi.bonds.id/ping
+    interval: 300
+    proxies:
+      - Id Racevpn
+      - Sg Racevpn
+      - Sg Jagoanssh l
+      - Id Jagoanssh l
+      - Sg Jagoanssh
+      - Id Jagoanssh
+      - Sg Sshstores
+      - Id Sshstores
+      - Sg Herbal
+      - Id Herbal
+# -----------------------------------------------------------
+rule-providers:
+  Adblock:
+    type: http
+    behavior: classical
+    path: ./Adblock.yaml
+    url: 'https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/AdvertisingTest/AdvertisingTest_Classical.yaml'
+    interval: 86300
+  Anti-Hijack:
+    type: http
+    behavior: classical
+    path: ./Hijack.yaml
+    url: 'https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Hijacking/Hijacking.yaml'
+    interval: 86300
+  LAN:
+    type: http
+    behavior: ipcidr
+    path: ./LAN.yaml
+    url: 'https://raw.githubusercontent.com/stealth-sr/provider/vpn/LAN.txt'
+    interval: 86300
+# ----------------------------------------------------------
+rules:
+  - RULE-SET,Adblock,REJECT,no-resolve
+  - RULE-SET,Anti-Hijack,REJECT,no-resolve
+  - RULE-SET,LAN,DIRECT
+  - MATCH,IRENE
+#----------------------------------------------------------
