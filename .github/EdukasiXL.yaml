@@ -61,6 +61,22 @@ proxies:
       headers:
         Host: sg1-v2ray.sshkit.org
     udp: true
+  - name: HK Vpnstunnel # Exp 19
+    server: 104.26.4.10
+    port: 80
+    type: vmess
+    uuid: d8d074e1-ce54-413f-958e-527f2d25ecfb
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: v-hk.sshcf.xyz
+    network: ws
+    ws-opts:
+      path: /vpnstunnel/
+      headers:
+        Host: v-hk.sshcf.xyz
+    udp: true
 # -----------------------------------------------------------
 # Proxy Group
 # -----------------------------------------------------------
@@ -70,6 +86,7 @@ proxy-groups:
     proxies:
        - ID Mainssh
        - SG Sshkit
+       - HK Vpnstunnel
 # -----------------------------------------------------------
 rules:
   - MATCH,IRENE
