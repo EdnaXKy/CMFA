@@ -1,0 +1,37 @@
+proxies: 
+# ----------------------------------------------------------------
+# Vmess
+# ----------------------------------------------------------------
+  - name: VIP Azure # Exp 9 September
+    server: 20.205.208.15
+    port: 8443
+    type: vmess
+    uuid: fd6bedae-047b-411f-9f15-40af0fb5f168
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: "web.web.whatsapp.com"
+    network: ws
+    ws-opts:
+      path: /v2ray
+      headers:
+        Host: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
+# Proxy Group
+# -----------------------------------------------------------
+proxy-groups:
+  - name: IRENE
+    type: select
+    proxies:
+      - V2RAY
+# -----------------------------------------------------------
+  - name: V2RAY
+    type: select
+    proxies:
+      - VIP Azure
+# -----------------------------------------------------------
+rules:
+  - MATCH,IRENE
+#----------------------------------------------------------
