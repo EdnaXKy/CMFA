@@ -45,48 +45,21 @@ proxies:
       grpc-service-name: vmessgrpc
     udp: true
 # -----------------------------------------------------------
-  - name: SG Mainssh # Exp 18
+  - name: SG Sshkit # Exp 14 Sept
     server: 104.26.4.10
-    port: 443
-    type: vless
-    uuid: d47d74b9-29de-44c9-b22a-22d9a82dfe36
+    port: 80
+    type: vmess
+    uuid: c6747da4-fb2e-4a2a-bdb7-8614bdd6b0b3
+    alterId: 0
     cipher: auto
-    tls: true
+    tls: false
     skip-cert-verify: true
-    servername: "sglgrpc.mainssh.xyz"
-    network: grpc
-    grpc-opts:
-      grpc-service-name: vlessgrpc
-    udp: true
-# -----------------------------------------------------------
-# Akun Trojan
-# -----------------------------------------------------------
-  - name: ID Biznet II
-    server: 104.26.4.10
-    port: 443
-    type: trojan
-    password: f6293760-1a0b-11ed-a14d-1239d0255272
-    skip-cert-verify: true
-    sni: "id2-trojan.bonds.id"
+    servername: sg1-v2ray.sshkit.org
     network: ws
     ws-opts:
-      path: /howdy
+      path: /sshkit/5520010979/62f8aae81354f/
       headers:
-        Host: "id2-trojan.bonds.id"
-    udp: true
-# -----------------------------------------------------------
-  - name: ID Biznet I
-    server: 104.26.4.10
-    port: 443
-    type: trojan
-    password: 2011d2a0-1a0c-11ed-9bac-1239d0255272
-    skip-cert-verify: true
-    sni: "id5-trojan.bonds.id"
-    network: ws
-    ws-opts:
-      path: /howdy
-      headers:
-        Host: "id5-trojan.bonds.id"
+        Host: sg1-v2ray.sshkit.org
     udp: true
 # -----------------------------------------------------------
 # Proxy Group
@@ -95,20 +68,8 @@ proxy-groups:
   - name: IRENE
     type: select
     proxies:
-      - GRPC
-      - TROJAN/GO/GFW
-# -----------------------------------------------------------
-  - name: GRPC
-    type: select
-    proxies:
-      - ID Mainssh
-      - SG Mainssh
-# -----------------------------------------------------------
-  - name: TROJAN/GO/GFW
-    type: select
-    proxies:
-      - ID Biznet I
-      - ID Biznet II
+       - ID Mainssh
+       - SG Sshkit
 # -----------------------------------------------------------
 rules:
   - MATCH,IRENE
