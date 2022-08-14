@@ -19,6 +19,117 @@ proxies:
         Host: "web.web.whatsapp.com"
     udp: true
 # -----------------------------------------------------------
+# Vmess/Vmess gRPC
+# -----------------------------------------------------------
+  - name: ID Mainssh # Exp 18
+    server: idmgrpc.mainssh.xyz
+    port: 443
+    type: vmess
+    uuid: 19315fcf-0f5d-4ece-8b0f-c8296832dd4a
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: "web.web.whatsapp.com"
+    network: grpc
+    grpc-opts:
+      grpc-service-name: vmessgrpc
+    udp: true
+# -----------------------------------------------------------
+# Akun ShadowSocks
+# -----------------------------------------------------------
+  - name: SG Firenet I # Exp 17
+    server: 128.199.174.71
+    port: 1445
+    type: ssr
+    cipher: aes-256-cfb
+    password: "firenet_Yunes"
+    protocol: origin
+    obfs: tls1.2_ticket_auth
+    protocol-param: ""
+    obfs-param: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
+  - name: SG Firenet II # Exp 17
+    server: 128.199.204.169
+    port: 1444
+    type: ssr
+    cipher: aes-256-cfb
+    password: "firenet_Yunez"
+    protocol: origin
+    obfs: tls1.2_ticket_auth
+    protocol-param: ""
+    obfs-param: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
+  - name: SG Firenet III # Exp 17
+    server: 188.166.210.213
+    port: 1443
+    type: ssr
+    cipher: aes-256-cfb
+    password: "firenet_Yunex"
+    protocol: origin
+    obfs: tls1.2_ticket_auth
+    protocol-param: ""
+    obfs-param: "web.web.whatsapp.com"
+    udp: true
+  
+  - name: Test
+    server: dewabiz.kitu.xyz
+    port: 8445
+    type: ssr
+    cipher: aes-256-cfb
+    password: whyvpn-lumine
+    protocol: auth_sha1_v4
+    obfs: tls1.2_ticket_auth
+    protocol-param: ""
+    obfs-param: web.web.whatsapp.com
+    udp: true
+# -----------------------------------------------------------
+# Akun Trojan
+# -----------------------------------------------------------
+  - name: ID Biznet II
+    server: id2-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: f6293760-1a0b-11ed-a14d-1239d0255272
+    skip-cert-verify: true
+    sni: "web.web.whatsapp.com"
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
+  - name: ID Biznet I
+    server: id5-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 2011d2a0-1a0c-11ed-9bac-1239d0255272
+    skip-cert-verify: true
+    sni: "web.web.whatsapp.com"
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
+  - name: ID Herza
+    server: idtj-herza.bonds.id
+    port: 443
+    type: trojan
+    password: 61080650-1a59-11ed-9cf1-1239d0255272
+    skip-cert-verify: true
+    sni: "web.web.whatsapp.com"
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: "web.web.whatsapp.com"
+    udp: true
+# -----------------------------------------------------------
 # Proxy Group
 # -----------------------------------------------------------
 proxy-groups:
@@ -26,11 +137,34 @@ proxy-groups:
     type: select
     proxies:
       - V2RAY
+      - GRPC
+      - SHADOW/SSR
+      - TROJAN/GO/GFW
 # -----------------------------------------------------------
   - name: V2RAY
     type: select
     proxies:
       - VIP Azure
+# -----------------------------------------------------------
+  - name: GRPC
+    type: select
+    proxies:
+      - ID Mainssh
+# -----------------------------------------------------------
+  - name: SHADOW/SSR
+    type: select
+    proxies:
+      - Test
+      - SG Firenet I
+      - SG Firenet II
+      - SG Firenet III
+# -----------------------------------------------------------
+  - name: TROJAN/GO/GFW
+    type: select
+    proxies:
+      - ID Herza
+      - ID Biznet I
+      - ID Biznet II
 # -----------------------------------------------------------
 rules:
   - MATCH,IRENE
