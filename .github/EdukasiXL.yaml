@@ -61,33 +61,116 @@ proxies:
       headers:
         Host: sg1-v2ray.sshkit.org
     udp: true
-  - name: HK Vpnstunnel # Exp 19
-    server: 104.26.4.10
-    port: 80
-    type: vmess
-    uuid: d8d074e1-ce54-413f-958e-527f2d25ecfb
-    alterId: 0
-    cipher: auto
-    tls: false
+  - name: ID-IKD
+    server: idtj-ikd.bonds.id
+    port: 443
+    type: trojan
+    password: 45e0f150-1c92-11ed-9031-1239d0255272
     skip-cert-verify: true
-    servername: v-hk.sshcf.xyz
-    network: ws
-    ws-opts:
-      path: /vpnstunnel/
-      headers:
-        Host: v-hk.sshcf.xyz
+    sni: web.web.whatsapp.com
     udp: true
+#=============================================
+  - name: SG-MUX
+    server: sg6-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 81e9f5f0-1c92-11ed-8d18-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: SG-UDPGW
+    server: sg8-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: a2940130-1c92-11ed-aebe-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: ID-BIZNET I
+    server: id5-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: ca0c33d0-1c92-11ed-9a11-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: SG-HE II
+    server: sg2-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: f1a23bf0-1c92-11ed-b6d8-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: ID-BIZNET II
+    server: id2-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 200b3f20-1c93-11ed-9472-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: SG-HE III
+    server: sg3-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 4717af60-1c93-11ed-9315-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: ID-HERZA
+    server: idtj-herza.bonds.id
+    port: 443
+    type: trojan
+    password: 6ae7c990-1c93-11ed-a6f2-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+#=============================================
+  - name: SG-OVH
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 888f4b20-1c93-11ed-8403-1239d0255272
+    skip-cert-verify: true
+    sni: sgovh-trojan.bonds.id
+    udp: true
+#=============================================
+  - name: SG-HE I
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: a1647ec0-1c93-11ed-bfc5-1239d0255272
+    skip-cert-verify: true
+    sni: sg1-trojan.bonds.id
+    udp: true
+#=============================================
 # -----------------------------------------------------------
 # Proxy Group
 # -----------------------------------------------------------
 proxy-groups:
-  - name: IRENE
+  - name: Proxy
     type: select
     proxies:
        - ID Mainssh
        - SG Sshkit
-       - HK Vpnstunnel
+       - ID-IKD
+       - SG-MUX
+       - SG-UDPGW
+       - ID-BIZNET I
+       - SG-HE II
+       - ID-BIZNET II
+       - SG-HE III
+       - ID-HERZA
+       - SG-OVH
+       - SG-HE I
 # -----------------------------------------------------------
 rules:
-  - MATCH,IRENE
+  - MATCH,Proxy
 #----------------------------------------------------------
