@@ -116,12 +116,12 @@ proxies:
     udp: true
 #=============================================
   - name: SG-HE III
-    server: sg3-trojan.bonds.id
+    server: 104.26.4.10
     port: 443
     type: trojan
     password: 4717af60-1c93-11ed-9315-1239d0255272
     skip-cert-verify: true
-    sni: web.web.whatsapp.com
+    sni: sg3-trojan.bonds.id
     udp: true
 #=============================================
   - name: ID-HERZA
