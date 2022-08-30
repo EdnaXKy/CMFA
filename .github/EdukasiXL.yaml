@@ -158,18 +158,18 @@ proxy-groups:
   - name: Proxy
     type: select
     proxies:
-       - ID Mainssh
-       - SG Sshkit
-       - ID-IKD
-       - SG-MUX
-       - SG-UDPGW
-       - ID-BIZNET I
-       - SG-HE II
-       - ID-BIZNET II
-       - SG-HE III
-       - ID-HERZA
-       - SG-OVH
-       - SG-HE I
+#       - ID Mainssh
+        - SG Sshkit
+#       - ID-IKD
+#       - SG-MUX
+#       - SG-UDPGW
+#       - ID-BIZNET I
+#       - SG-HE II
+#       - ID-BIZNET II
+#       - SG-HE III
+#       - ID-HERZA
+#       - SG-OVH
+#       - SG-HE I
 # -----------------------------------------------------------
 rules:
   - MATCH,Proxy
