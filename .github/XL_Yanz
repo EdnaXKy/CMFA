@@ -42,6 +42,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: SG - UDPGW
     server: sg8-trojan.bonds.id
     port: 443
@@ -50,6 +51,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: SG - OVH
     server: sgovh-trojan.bonds.id
     port: 443
@@ -58,6 +60,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: SG - DUAL STACK
     server: sg-atha.bonds.id
     port: 443
@@ -66,6 +69,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: ID - HERZA
     server: idtj-herza.bonds.id
     port: 443
@@ -74,6 +78,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: ID - IKD
     server: idtj-ikd.bonds.id
     port: 443
@@ -82,6 +87,7 @@ proxies:
     skip-cert-verify: true
     sni: web.web.whatsapp.com
     udp: true
+
   - name: ID - BIZNET
     server: id5-trojan.bonds.id
     port: 443
@@ -92,7 +98,7 @@ proxies:
     udp: true
     
 proxy-groups:
-  - name: 🃏𝕲𝖓𝖗𝖑𝕶𝖞𝖞_𝕯𝖊𝖈𝖗𝖞𝖕𝖙𝖔𝖗
+  - name: Country
     type: select
     proxies:
       - SGP
@@ -113,4 +119,4 @@ proxy-groups:
       - ID - IKD
       - ID - BIZNET
 rules:
-  - MATCH,🃏𝕲𝖓𝖗𝖑𝕶𝖞𝖞_𝕯𝖊𝖈𝖗𝖞𝖕𝖙𝖔𝖗
+  - MATCH,Country
