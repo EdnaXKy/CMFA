@@ -31,92 +31,131 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
     - 112.215.203.254
-    
-    
 proxies:
-  - name: SG - MUX
-    server: sg6-trojan.bonds.id
-    port: 443
-    type: trojan
-    password: 90a6f380-5464-11ed-90b5-1239d0255272
-    skip-cert-verify: true
-    sni: web.web.whatsapp.com
-    udp: true
-
-  - name: SG - UDPGW
-    server: sg8-trojan.bonds.id
-    port: 443
-    type: trojan
-    password: 90d87940-5465-11ed-b2dd-1239d0255272
-    skip-cert-verify: true
-    sni: web.web.whatsapp.com
-    udp: true
-
-  - name: SG - OVH
-    server: sgovh-trojan.bonds.id
-    port: 443
-    type: trojan
-    password: 32900050-5466-11ed-88f2-1239d0255272
-    skip-cert-verify: true
-    sni: web.web.whatsapp.com
-    udp: true
-
-  - name: SG - DUAL STACK
-    server: sg-atha.bonds.id
-    port: 443
-    type: trojan
-    password: 0c81af10-5467-11ed-b664-1239d0255272
-    skip-cert-verify: true
-    sni: web.web.whatsapp.com
-    udp: true
-
-  - name: ID - HERZA
-    server: idtj-herza.bonds.id
-    port: 443
-    type: trojan
-    password: 7ada1d60-5465-11ed-90a7-1239d0255272
-    skip-cert-verify: true
-    sni: web.web.whatsapp.com
-    udp: true
 
   - name: ID - IKD
-    server: idtj-ikd.bonds.id
+    server: 104.26.4.10
     port: 443
     type: trojan
-    password: ab9a2240-5465-11ed-a3a8-1239d0255272
+    password: 0d4b1730-5737-11ed-b3f5-1239d0255272
     skip-cert-verify: true
-    sni: web.web.whatsapp.com
+    sni: idtj-ikd.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: idtj-ikd.bonds.id
     udp: true
-
-  - name: ID - BIZNET
-    server: id5-trojan.bonds.id
+    
+  - name: SG - HE MUX
+    server: 104.26.4.10
     port: 443
     type: trojan
-    password: 157b1fa0-5466-11ed-9172-1239d0255272
+    password: 41f94df0-5737-11ed-a8ce-1239d0255272
     skip-cert-verify: true
-    sni: web.web.whatsapp.com
+    sni: sg6-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg6-trojan.bonds.id
+    udp: true
+    
+  - name: SG - HE II
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 78474360-5737-11ed-bb70-1239d0255272
+    skip-cert-verify: true
+    sni: sg2-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg2-trojan.bonds.id
+    udp: true
+    
+  - name: ID - HERZA
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: a6c59280-5737-11ed-9d02-1239d0255272
+    skip-cert-verify: true
+    sni: idtj-herza.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: idtj-herza.bonds.id
+    udp: true
+    
+  - name: ID - BIZNET
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: c82f7320-5737-11ed-b731-1239d0255272
+    skip-cert-verify: true
+    sni: id5-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: id5-trojan.bonds.id
+    udp: true
+    
+  - name: SG - HE I
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 1374ac00-5738-11ed-aca2-1239d0255272
+    skip-cert-verify: true
+    sni: sg1-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg1-trojan.bonds.id
+    udp: true
+    
+  - name: SG - OVH
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 836e8400-5738-11ed-8734-1239d0255272
+    skip-cert-verify: true
+    sni: sgovh-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sgovh-trojan.bonds.id
+    udp: true
+    
+  - name: SG - DUAL STACK
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: af6448c0-5738-11ed-856f-1239d0255272
+    skip-cert-verify: true
+    sni: sg-atha.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg-atha.bonds.id
     udp: true
     
 proxy-groups:
-  - name: Country
+  - name: CMFA
     type: select
     proxies:
-      - SGP
-      - IDN
-
-  - name: SGP
-    type: select
-    proxies:
-      - SG - MUX
-      - SG - UDPGW
+      - ID - IKD
+      - SG - HE MUX
+      - SG - HE II
+      - ID - HERZA
+      - ID - BIZNET
+      - SG - HE I
       - SG - OVH
       - SG - DUAL STACK
-      
-  - name: IDN
-    type: select
-    proxies:
-      - ID - HERZA
-      - ID - IKD
-      - ID - BIZNET
 rules:
-  - MATCH,Country
+  - MATCH,CMFA
