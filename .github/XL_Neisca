@@ -1,0 +1,161 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+proxies:
+
+  - name: ID - IKD
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 0d4b1730-5737-11ed-b3f5-1239d0255272
+    skip-cert-verify: true
+    sni: idtj-ikd.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: idtj-ikd.bonds.id
+    udp: true
+    
+  - name: SG - HE MUX
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 41f94df0-5737-11ed-a8ce-1239d0255272
+    skip-cert-verify: true
+    sni: sg6-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg6-trojan.bonds.id
+    udp: true
+    
+  - name: SG - HE II
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 78474360-5737-11ed-bb70-1239d0255272
+    skip-cert-verify: true
+    sni: sg2-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg2-trojan.bonds.id
+    udp: true
+    
+  - name: ID - HERZA
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: a6c59280-5737-11ed-9d02-1239d0255272
+    skip-cert-verify: true
+    sni: idtj-herza.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: idtj-herza.bonds.id
+    udp: true
+    
+  - name: ID - BIZNET
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: c82f7320-5737-11ed-b731-1239d0255272
+    skip-cert-verify: true
+    sni: id5-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: id5-trojan.bonds.id
+    udp: true
+    
+  - name: SG - HE I
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 1374ac00-5738-11ed-aca2-1239d0255272
+    skip-cert-verify: true
+    sni: sg1-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg1-trojan.bonds.id
+    udp: true
+    
+  - name: SG - OVH
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: 836e8400-5738-11ed-8734-1239d0255272
+    skip-cert-verify: true
+    sni: sgovh-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sgovh-trojan.bonds.id
+    udp: true
+    
+  - name: SG - DUAL STACK
+    server: 104.26.4.10
+    port: 443
+    type: trojan
+    password: af6448c0-5738-11ed-856f-1239d0255272
+    skip-cert-verify: true
+    sni: sg-atha.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg-atha.bonds.id
+    udp: true
+    
+proxy-groups:
+  - name: CMFA
+    type: select
+    proxies:
+      - ID - IKD
+      - SG - HE MUX
+      - SG - HE II
+      - ID - HERZA
+      - ID - BIZNET
+      - SG - HE I
+      - SG - OVH
+      - SG - DUAL STACK
+rules:
+  - MATCH,CMFA
