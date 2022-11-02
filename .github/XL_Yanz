@@ -1,0 +1,116 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+    
+    
+proxies:
+  - name: SG - MUX
+    server: sg6-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 90a6f380-5464-11ed-90b5-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: SG - UDPGW
+    server: sg8-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 90d87940-5465-11ed-b2dd-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: SG - OVH
+    server: sgovh-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 32900050-5466-11ed-88f2-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: SG - DUAL STACK
+    server: sg-atha.bonds.id
+    port: 443
+    type: trojan
+    password: 0c81af10-5467-11ed-b664-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: ID - HERZA
+    server: idtj-herza.bonds.id
+    port: 443
+    type: trojan
+    password: 7ada1d60-5465-11ed-90a7-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: ID - IKD
+    server: idtj-ikd.bonds.id
+    port: 443
+    type: trojan
+    password: ab9a2240-5465-11ed-a3a8-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+  - name: ID - BIZNET
+    server: id5-trojan.bonds.id
+    port: 443
+    type: trojan
+    password: 157b1fa0-5466-11ed-9172-1239d0255272
+    skip-cert-verify: true
+    sni: web.web.whatsapp.com
+    udp: true
+    
+proxy-groups:
+  - name: 🃏𝕲𝖓𝖗𝖑𝕶𝖞𝖞_𝕯𝖊𝖈𝖗𝖞𝖕𝖙𝖔𝖗
+    type: select
+    proxies:
+      - SGP
+      - IDN
+
+  - name: SGP
+    type: select
+    proxies:
+      - SG - MUX
+      - SG - UDPGW
+      - SG - OVH
+      - SG - DUAL STACK
+      
+  - name: IDN
+    type: select
+    proxies:
+      - ID - HERZA
+      - ID - IKD
+      - ID - BIZNET
+rules:
+  - MATCH,🃏𝕲𝖓𝖗𝖑𝕶𝖞𝖞_𝕯𝖊𝖈𝖗𝖞𝖕𝖙𝖔𝖗
