@@ -1,0 +1,23 @@
+
+[General]
+dns-server = system, 108.137.44.39, 108.137.44.9, puredns.org:853
+
+[Proxy]
+SGP - MUX = trojan, sg6-trojan.bonds.id, 443, password=90a6f380-5464-11ed-90b5-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+SGP - UDPGW = trojan, sg8-trojan.bonds.id, 443, password=90d87940-5465-11ed-b2dd-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+SGP - OVH = trojan, sgovh-trojan.bonds.id, 443, password=32900050-5466-11ed-88f2-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+SGP - DUAL STACK = trojan, sg-atha.bonds.id, 443, password=0c81af10-5467-11ed-b664-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+IDN - HERZA = trojan, idtj-herza.bonds.id, 443, password=7ada1d60-5465-11ed-90a7-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+IDN - IKD = trojan, idtj-ikd.bonds.id, 443, password=ab9a2240-5465-11ed-a3a8-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+IDN - BIZNET = trojan, id5-trojan.bonds.id, 443, password=157b1fa0-5466-11ed-9172-1239d0255272, skip-cert-verify=true, sni=web.web.whatsapp.com, udp-relay=true
+
+[Proxy Group]
+SelectGroup = select,SGP - MUX, SGP - UDPGW, SGP - OVH, SGP - DUAL STACK, IDN - BIZNET, IDN - IKD, IDN - HERZA
+[Rule]
+FINAL,SelectGroup
