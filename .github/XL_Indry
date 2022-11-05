@@ -37,7 +37,7 @@ proxies:
     server: 104.26.4.10
     port: 443
     type: trojan
-    password: 0d4b1730-5737-11ed-b3f5-1239d0255272
+    password: b3a33990-5cfb-11ed-9dd8-1239d0255272
     skip-cert-verify: true
     sni: idtj-ikd.bonds.id
     network: ws
@@ -65,7 +65,7 @@ proxies:
     server: 104.26.4.10
     port: 443
     type: trojan
-    password: 78474360-5737-11ed-bb70-1239d0255272
+    password: 774f1400-5cfb-11ed-8077-1239d0255272
     skip-cert-verify: true
     sni: sg2-trojan.bonds.id
     network: ws
@@ -79,7 +79,7 @@ proxies:
     server: 104.26.4.10
     port: 443
     type: trojan
-    password: a6c59280-5737-11ed-9d02-1239d0255272
+    password: 925ddaa0-5cfb-11ed-9922-1239d0255272
     skip-cert-verify: true
     sni: idtj-herza.bonds.id
     network: ws
@@ -121,7 +121,7 @@ proxies:
     server: 104.26.4.10
     port: 443
     type: trojan
-    password: 836e8400-5738-11ed-8734-1239d0255272
+    password: d5fc7e70-5cfb-11ed-9d3e-1239d0255272
     skip-cert-verify: true
     sni: sgovh-trojan.bonds.id
     network: ws
@@ -135,7 +135,7 @@ proxies:
     server: 104.26.4.10
     port: 443
     type: trojan
-    password: af6448c0-5738-11ed-856f-1239d0255272
+    password: e8a69440-5cfb-11ed-9f06-1239d0255272
     skip-cert-verify: true
     sni: sg-atha.bonds.id
     network: ws
